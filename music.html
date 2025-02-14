@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Song</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Our Song 🎵</h1>
+        <div class="spotify-player">
+            <div class="album-cover">
+                <img id="slideshow" src="images/photo1.jpg" alt="Our Memories">
+            </div>
+            <div class="song-info">
+                <h2>Can't Help Falling in Love</h2>
+                <p>Elvis Presley</p>
+            </div>
+            <div class="player-controls">
+                <button class="control-button" onclick="playPause()">⏯️</button>
+                <button class="control-button" onclick="restartSong()">⏮️</button>
+            </div>
+            <audio id="song" src="music/cant-help-falling-in-love.mp3" autoplay></audio>
+        </div>
+        <div class="navigation">
+            <a href="gallery.html" class="button">🔙 Back to Gallery</a>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById("song");
+
+        // Function to play/pause the song
+        function playPause() {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+
+        // Function to restart the song
+        function restartSong() {
+            audio.currentTime = 0;
+            audio.play();
+        }
+
+        // Slideshow logic
+        const slideshow = document.getElementById("slideshow");
+        const images = [
+            "images/photo1.jpg",
+            "images/photo2.jpg",
+            "images/photo3.jpg",
+            "images/photo4.jpg",
+            "images/photo5.jpg",
+            "images/photo6.jpg",
+            "images/photo7.jpg",
+            "images/photo8.jpg",
+            "images/photo9.jpg",
+            "images/photo10.jpg",
+        ];
+
+        let currentImageIndex = 0;
+
+        function changeImage() {
+            // Update the image source
+            slideshow.src = images[currentImageIndex];
+
+            // Move to the next image
+            currentImageIndex = (currentImageIndex + 1) % images.length; // Loop back to the start after the last image
+        }
+
+        // Change image every 3 seconds (3000 milliseconds)
+        setInterval(changeImage, 3000);
+
+        // Start the slideshow immediately
+        changeImage();
+    </script>
+</body>
+</html>
